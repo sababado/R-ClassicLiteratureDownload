@@ -135,7 +135,7 @@ test_that('Pull the Correct Column @pull', {
 
 test_that('Create an Empty List @empty-list', {
   expect(is_function(user$unique_books), 'Have you defined a function called `unique_books`?')
-  expect(walkAST(user$unique_books, list('duplicates', '<-', 'list()')), 'Have you created an empty list called `duplicates`?')
+  expect(walkAST(user$unique_books, list('duplicates', '<-', 'list()')) || walkAST(user$unique_books, list('duplicates', '<-', 'list(0)')), 'Have you created an empty list called `duplicates`?')
 })
 
 test_that(' Create a For Loop @for-loop', {
@@ -151,7 +151,7 @@ test_that('Fuzzy Matching @fuzzy-matching', {
 
 test_that('Add Elements to a List @add-list', {
   expect(is_function(user$unique_books), 'Have you defined a function called `unique_books`?')
-  expect(walkAST(user$unique_books, list('for', list('if', 'length(last)', ''))), 'Do you have an `if` statement that checks the `length` of `last`?')
+  expect(walkAST(user$unique_books, list('for', list('if', 'length(last)', ''))) || walkAST(user$unique_books, list('for', list('if', 'length(last)>0', ''))), 'Do you have an `if` statement that checks the `length` of `last`?')
   expect(walkAST(user$unique_books, list('for', list('if', 'length(last)', list('duplicates[[last]]', '<-', 'last')))), 'In the body of an `if` statement are you adding the `last` variable to the `duplicates` list?')
 })
 
