@@ -19,7 +19,7 @@ unique_books <- function(data, column='title') {
   for (item in items) {
     match <- agrep(item, items)
     last <- match[-1]
-    if(length(last) > 0) {
+    if(length(last)) {
       duplicates[[last]] <- last
     }
   }
