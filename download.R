@@ -30,3 +30,7 @@ unique_books <- function(data, column='title') {
 
 twain_unique <- unique_books(twain_by_download)
 
+p <- ggplot(twain_unique, aes(x = sentences, y = avg_words_per_sentence)) + geom_point(aes(size=downloads))
+plot(p)
+
+
